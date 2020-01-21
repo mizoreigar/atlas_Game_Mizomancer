@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class earth_movement : MonoBehaviour
 {
+        
     public static int speeds=1;
     public static int counter=1;
     private bool movingRight = true;
     public static bool left =false;
     public static bool right = false;
+
+    public int speedRotate = 5;
      public Rigidbody2D rb;
     // Start is called before the first frame update
     public void Start()
     {        
-         
+            rb.GetComponent<Rigidbody2D>();
+            rb.gravityScale=0;
     }
 
     // Update is called once per frame
@@ -21,10 +25,10 @@ public class earth_movement : MonoBehaviour
     {
         //transform.Translate(Vector2.right * speeds * Time.deltaTime);
         if(counter%2==1){
-                        transform.Translate(Vector2.right * speeds * Time.deltaTime);
-                       
+                
+                        //transform.Translate(Vector2.right * speeds * Time.deltaTime);
                 }else if(counter%2==0) {
-                        transform.Translate(Vector2.left * speeds * Time.deltaTime);
+                        //transform.Translate(Vector2.left * speeds * Time.deltaTime);
                        
                 }
 
@@ -41,7 +45,13 @@ public class earth_movement : MonoBehaviour
                     right=false;
 		}   
 
+             if(trigger.gameObject.tag=="gameover"){
+                     transform.parent = null;
+                      rb.gravityScale=2;
+                      bar_movement.speed=0;
+             }   
     }    
+     
     public void Button(){
            /* if(left==true){
                     counter=2;

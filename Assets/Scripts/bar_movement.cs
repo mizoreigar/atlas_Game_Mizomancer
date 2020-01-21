@@ -6,7 +6,7 @@ using EZCameraShake;
 
 public class bar_movement : MonoBehaviour
 {
-    public float speed=10;
+    public static float speed=6;
     private bool movingRight = true;
     private bool greenisright = false;
     public GameObject bar;
@@ -23,7 +23,8 @@ public class bar_movement : MonoBehaviour
         Application.targetFrameRate = 60;
          Destroy(Instantiate(bar),0.2f);
          //earth_movement.speeds=0; 
-         earth_movement.counter = Random.Range(1, 5);
+         //earth_movement.counter = Random.Range  ( 1 , 5 );
+         rotate_movement.counter = Random.Range ( 1, 5 );
     }
 
     // Update is called once per frame
@@ -70,19 +71,18 @@ public class bar_movement : MonoBehaviour
                         //greenisright=false; 
                         barCounter++;
                         Destroy (GameObject.FindWithTag("green"));
-                        
                         Destroy(Instantiate(bar),0.5f);
                         score_Counter.score +=1;
-                        speed=speed+0.5f;
+                        speed=speed+0.2f;
                         if(earth_movement.right==true){
-                                earth_movement.counter=3;
+                                rotate_movement.counter=3;
                         }else if(earth_movement.left==true){
-                                earth_movement.counter=2;
+                                rotate_movement.counter=2;
                         }
                         
                         //greenisright=false=;           
                 }else if(greenisright==false){
-                        earth_movement.speeds +=3;   
+                        rotate_movement.speed +=10f;   
                         speed=speed+1;
                         barCounter=1;
                         //Destroy (GameObject.FindWithTag("green"));
